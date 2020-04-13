@@ -7,7 +7,7 @@ public class Runner {
 
 
         //make instances
-        Human h = new Human("John", "X");
+        Human h = new Human("Benton", "X");
         Computer c = new Computer("O");
         Scanner sc =  new Scanner(System.in);
         Board b = new Board();
