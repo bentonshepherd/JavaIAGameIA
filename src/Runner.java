@@ -68,8 +68,19 @@ public class Runner {
             }
 
             //computer move
-            int cMove = c.determineMove(b, h.token);
-            b.makeMove(cMove,c.token);
+            boolean freeCol = false;
+            int compMove = -1;
+
+            //If there are no good moves and the computer resorts to a random column, there is a chance that
+            //column is full. This assures that the computer moves in a column that is not full if it randomizes.
+            while(!freeCol) {
+                int cMove = c.determineMove(b, h.token);
+                if(b.colHasRoom(cMove)) {
+                    compMove = cMove;
+                    freeCol = true;
+                }
+            }
+            b.makeMove(compMove,c.token);
 
             //all done moving, display and repeat
             b.displayBoard();

@@ -527,7 +527,7 @@ public class Computer extends Player {
         return -1;
     }
 
-    //checks if a right diagonal win is possible based on the prospective space
+    //checks if a right diagonal win is likely to be possible based on the prospective space
     //reduces the likelihood of a pointless connect three
     public boolean dPossibleRight(Board b, int row, int col) {
         if(col == 0) {
@@ -536,25 +536,31 @@ public class Computer extends Player {
         if(col > 4) {
             return false;
         }
-        if(row > 3) {
+        if(row < 3) {
             return false;
         }
-        return b.grid[row - 3][col + 3].equals("-") || b.grid[row + 1][col - 1].equals("-");
+        return b.grid[row - 3][col + 3].equals("-") || b.grid[row-3][col+3].equals(this.token);
     }
 
-    //checks if a left diagonal win is possible based on the prospective space
+    //checks if a left diagonal win is likely to be possible based on the prospective space
     //reduces the likelihood of a pointless connect three
     public boolean dPossibleLeft(Board b, int row, int col) {
-        if(row == 7 && col == 7 && !b.grid[row-3][col-3].equals("-")) {
+        if(row < 3) {
             return false;
         }
-        if(row == 7 && !b.grid[row-3][col-3].equals("-")) {
+        if(col < 3) {
             return false;
         }
-        if(col == 7 && !b.grid[row-3][col-3].equals("-")) {
+        if(row == 7 && col == 7 && !b.grid[row-3][col-3].equals("-") && !b.grid[row-3][col-3].equals(this.token)) {
             return false;
         }
-        return b.grid[row - 3][col - 3].equals("-") || b.grid[row + 1][col + 1].equals("-");
+        if(row == 7 && !b.grid[row-3][col-3].equals("-") && !b.grid[row-3][col-3].equals(this.token)) {
+            return false;
+        }
+        if(col == 7 && !b.grid[row-3][col-3].equals("-") && !b.grid[row-3][col-3].equals(this.token)) {
+            return false;
+        }
+        return b.grid[row-3][col-3].equals("-") || b.grid[row-3][col+3].equals(this.token);
     }
 
     public int hConnect2(Board b, String token) {
