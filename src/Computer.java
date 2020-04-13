@@ -533,6 +533,12 @@ public class Computer extends Player {
         if(col == 0) {
             return b.grid[row-3][col+3].equals("-") || b.grid[row-3][col+3].equals(this.token);
         }
+        if(col > 4) {
+            return false;
+        }
+        if(row > 3) {
+            return false;
+        }
         return b.grid[row - 3][col + 3].equals("-") || b.grid[row + 1][col - 1].equals("-");
     }
 
@@ -669,6 +675,12 @@ public class Computer extends Player {
         if(row == 0) {
             return true;
         }
+        if(row == 1 && col == 0 && (b.grid[row][col+1].equals("-") || b.grid[row][col+1].equals(this.token))) {
+            return true;
+        }
+        if(row == 1 && col == 7 && (b.grid[row][col+1].equals("-") || b.grid[row][col+1].equals(this.token))) {
+            return true;
+        }
         if(col == 0 && row == 7) {
             return b.grid[row - 2][col + 1].equals("-") || b.grid[row - 2][col + 1].equals(this.token);
         }
@@ -711,10 +723,10 @@ public class Computer extends Player {
                 (b.grid[row-2][col-1].equals(this.token) && b.grid[row-2][col+1].equals(this.token))) {
             return true;
         }
-        if(b.grid[row-2][col-1].equals(this.token) && b.grid[row-2][col+1].equals("-")) {
+        if(b.grid[row-2][col-1].equals(this.token) || b.grid[row-2][col+1].equals("-")) {
             return true;
         }
-        return b.grid[row - 2][col - 1].equals("-") && b.grid[row - 2][col + 1].equals(this.token);
+        return b.grid[row - 2][col - 1].equals("-") || b.grid[row - 2][col + 1].equals(this.token);
     }
 
     public int trap(Board b, String token) {

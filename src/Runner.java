@@ -4,11 +4,14 @@ import java.util.Scanner;
 public class Runner {
 
     public static void main(String[] args) {
+
+
         //make instances
         Human h = new Human("John", "X");
         Computer c = new Computer("O");
         Scanner sc =  new Scanner(System.in);
         Board b = new Board();
+
 
         //game loop
         System.out.println("Connect 4");
@@ -82,7 +85,7 @@ public class Runner {
             System.out.print("Game Over! You lose!");
         }
         if(b.checkWin(h.token)) {
-            System.out.print("Game Over! You win!");
+            System.out.print("You win!");
         }
         if(!b.checkWin(c.token) && !b.checkWin(h.token)) {
             System.out.print("No winner! Cat's game!");
