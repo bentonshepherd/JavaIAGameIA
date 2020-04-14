@@ -46,7 +46,7 @@ public class Runner {
                         sc.next();
                     }
 
-                    if(moveCol < 8 && !b.colHasRoom(moveCol)){
+                    if(moveCol < 8 && moveCol > 0 && !b.colHasRoom(moveCol)){
                         System.out.println("Column is full");
                         legalCol = false;
                         sc.next();
